@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "collabora-code.fullname" . -}}
 {{- $ingressPaths := .Values.ingress.paths -}}
+{{- $servicePort := .Values.service.port -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -36,7 +37,7 @@ spec:
             backend:
               name: {{ $fullName }}
               port:
-                number: {{ .Values.service.port }}
+                number: {{ $servicePort }}
   {{- end }}
   {{- end }}
 {{- end }}
